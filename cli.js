@@ -18,8 +18,11 @@ if(args.h) {
 }
 
 var timezone = moment.tz.guess();
-var latitude;
-var longitude;
+var latitude = args.n || args.s * -1;;
+var longitude = args.e || args.w * -1;
+
+
+
 
 if (args.z) {
     timezone = args.z;
@@ -51,19 +54,18 @@ const data = await response.json();
 if (args.j) {
     console.log(data);
     process.exit(0);
+} else {
+	const days = args.d
+	console.log(data.precipitation);
+	if (days == 0) {
+    		console.log("today.")
+    	} else if (days > 1) {
+    		console.log("in " + days + " days.")
+   	} else {
+    		console.log("tomorrow.")
+    	}
 }
 
-const days = args.d
-
-if (days == 0) {
-  console.log("today.")
-} 
-else if (days > 1) {
-  console.log("in " + days + " days.")
-} 
-else {
-  console.log("tomorrow.")
-}
 
 
 
